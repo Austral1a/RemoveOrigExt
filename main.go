@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -40,7 +39,7 @@ func main() {
 		return nil
 	})
 	if err != nil {
-		log.Println(err)
+		fmt.Println(err)
 	}
 
 L:
@@ -76,9 +75,9 @@ func writeFilePathWithExt(fileName, ext string) {
 }
 
 func sayFileRemoveSucceed(filePath string) {
-	log.Println(fmt.Sprintf("`%s` has been deleted successfully", filePath))
+	fmt.Println(fmt.Sprintf("`%s` has been deleted successfully", filePath))
 }
 
 func sayFileRemoveFailed(filePath string, err error) {
-	log.Println(fmt.Sprintf("`%s` has not been deleted\nerror: %s", filePath, err))
+	fmt.Println(fmt.Sprintf("`%s` has not been deleted\nerror: %s", filePath, err))
 }
