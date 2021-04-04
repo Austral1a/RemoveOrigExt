@@ -54,6 +54,7 @@ L:
 				sayFileRemoveFailed(file, err)
 			}
 		default:
+			close(_FILES)
 			break L
 		}
 	}
