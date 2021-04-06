@@ -8,6 +8,18 @@ import (
 	"strings"
 )
 
+type ANSIColor = string
+
+const (
+	Reset     ANSIColor = "\033[0m"
+	RedText   ANSIColor = "\033[31m"
+	GreenText ANSIColor = "\033[32m"
+)
+
+func Colorize(color ANSIColor, msg string) string {
+	return fmt.Sprintf("%s%s%s", color, msg, Reset)
+}
+
 const OrigExt = ".orig"
 
 var _FILES = make(chan string, 20)
@@ -76,9 +88,9 @@ func writeFilePathWithExt(fileName, ext string) {
 }
 
 func sayFileRemoveSucceed(filePath string) {
-	fmt.Println(fmt.Sprintf("`%s` has been deleted successfully", filePath))
+	fmt.Println(Colorize(GreenText, fmt.Sprintf("`%s` has been deleted successfully", filePath)))
 }
 
 func sayFileRemoveFailed(filePath string, err error) {
-	fmt.Println(fmt.Sprintf("`%s` has not been deleted\nerror: %s", filePath, err))
+	fmt.Println(Colorize(RedText, fmt.Sprintf("`%s` has not been deleted\nerror: %s", filePath, err)))
 }
